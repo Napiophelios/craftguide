@@ -478,4 +478,16 @@ if rawget(_G, "sfinv_buttons") then
 	})
 end
 
+if rawget(_G, "inventory_plus") then
+	minetest.register_on_joinplayer(function(player)
+		inventory_plus.register_button(player,"craftguide", "Crafting guide")
+	end)
+
+	minetest.register_on_player_receive_fields(function(player, formname, fields)
+		if fields.craftguide then
+			craftguide:on_use(nil, player)
+		end
+	end)
+end
+
 mt.register_alias("xdecor:crafting_guide", "craftguide:book")
